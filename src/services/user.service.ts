@@ -3,18 +3,19 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
-import { TreeService } from './tree.service'; // Import TreeService
+import { TreeService } from './tree.service';
+import { Purchase, Purchases } from 'src/types/purchases.type';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
-    private treeService: TreeService, // Inject TreeService
+    private treeService: TreeService,
   ) {}
 
   async calculateTotalCO2Offset(
-    treePurchases: any[],
+    treePurchases: Purchases,
     sessionId: string,
   ): Promise<User> {
     const treeData = this.treeService.getTreeData();
@@ -23,7 +24,7 @@ export class UserService {
     const emissionsData = {};
 
     // Logic to calculate CO2 emissions for a tree in a given month
-    const calculateTreeEmissions = (purchase) => {
+    const calculateTreeEmissions = (purchase: Purchase) => {
       const purchaseDate = new Date(purchase.month);
       const currentMonth = new Date();
       const treeAgeInMonths =
@@ -86,7 +87,7 @@ export class UserService {
       throw new Error(`User with session ID ${sessionId} not found`);
     }
 
-    user.treeEmissions = emissionsData; // Assuming User entity has a field for tree emissions
+    user.treeEmissions = emissionsData;
     return await this.userRepository.save(user);
   }
 }

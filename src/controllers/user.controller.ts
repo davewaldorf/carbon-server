@@ -7,15 +7,16 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { UserService } from '../services/user.service';
-
+import { Purchases } from '../types/purchases.type';
+import { UserSession } from '../types/session.type';
 @Controller('users')
 export class UserController {
   constructor(private userService: UserService) {}
 
   @Post('/calculate-co2-offset')
   async calculateCO2Offset(
-    @Body() treePurchases: any[], //
-    @Session() session: any,
+    @Body() treePurchases: Purchases,
+    @Session() session: UserSession,
   ) {
     try {
       if (!Array.isArray(treePurchases) || treePurchases.length === 0) {
