@@ -7,8 +7,8 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { UserService } from '../services/user.service';
-import { Purchases } from '../types/purchases.type';
-import { UserSession } from '../types/session.type';
+import { Purchases } from '../types/purchases';
+import { UserSession } from '../types/session';
 @Controller('users')
 export class UserController {
   constructor(private userService: UserService) {}

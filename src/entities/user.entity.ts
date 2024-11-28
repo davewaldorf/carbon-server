@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { Purchases } from 'src/types/purchases.type';
+import { Purchases } from 'src/types/purchases';
 import { CarbonNeutrality } from 'src/types/carbonneutrality.type';
 
 @Entity('Users')
