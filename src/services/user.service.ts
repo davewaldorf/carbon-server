@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { TreeService } from './tree.service';
-import { Purchase, Purchases } from 'src/types/purchases.type';
+import { Purchase, Purchases } from 'src/types/purchases';
 
 @Injectable()
 export class UserService {
